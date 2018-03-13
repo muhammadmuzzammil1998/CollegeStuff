@@ -81,7 +81,7 @@ int main() {
 			populate(limit);
 			printf("\t\tDone");
 		}
-		else printf("Invalid selection.");
+		else if (choice != 0) printf("Invalid selection.");
 	}
 	return 0;
 }
