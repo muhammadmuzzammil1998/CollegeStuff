@@ -22,7 +22,7 @@ int main() {
 	int i = 0, ptop = 0;
 	printf("Enter Infix Expression:\t");
 	scanf("%s", infix);
-	push('~'); // Tilde indicates base of stack
+	push('~'); // Tilde acts as a sentinel
 	while ((current = infix[i++]) != '\0') {
 		if (current == '(') {
 			push(current);
