@@ -47,8 +47,8 @@ int main() {
 	printf("Implementation of stack by array\n");
 	for (int i = 0; i < 32; i++) printf("=");
 	int choice = -1;
-	printf(
-		"\n\n\nSelect an option:\n\t1. Push\n\t2. Pop\n\t3. Peek\n\t4. Dump\n\t5. Empty stack\n\t6. Populate stack\n\t0. Exit\n");
+	printf("\n\n\nSelect an option:\n\t1. Push\n\t2. Pop\n\t3. Peek\n\t");
+	printf("4. Dump\n\t5. Empty stack\n\t6. Populate stack\n\t0. Exit\n");
 	while (choice != 0) {
 		printf("\nYour choice:\t");
 		scanf("%d", &choice);
