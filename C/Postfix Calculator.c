@@ -26,14 +26,14 @@ int main() {
 			ch++;
 			continue;
 		}
-		int number1 = pop();
-		int number2 = pop();
+		int y = pop();
+		int x = pop();
 		int answer;
-		if (*ch == '+') answer = number1 + number2;
-		else if (*ch == '-') answer = number1 - number2;
-		else if (*ch == '*') answer = number1 * number2;
-		else if (*ch == '/') answer = number1 / number2;
-		else if (*ch == '^') answer = pow(number1, number2);
+		if (*ch == '+') answer = x + y;
+		else if (*ch == '-') answer = y - x;
+		else if (*ch == '*') answer = x * y;
+		else if (*ch == '/') answer = x / y;
+		else if (*ch == '^') answer = pow(x, y);
 		else {
 			printf("ERROR: \"%c\"; Invalid character.\n", *ch);
 			return 1;
