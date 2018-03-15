@@ -35,6 +35,7 @@ int main() {
 	int i = 0, j = 0;
 	printf("Enter Infix Expression:\t");
 	scanf("%s", infix);
+	reverse(infix);
 	while ((ch = infix[i++]) != NULL_CHAR) {
 		if (ch == ')') {
 			push(ch);
@@ -48,8 +49,7 @@ int main() {
 			while (stack[top] != ')')
 				prefix[j++] = pop();
 			pop();
-		}
-		else {
+		} else {
 			while (priority(stack[top]) >= priority(ch))
 				prefix[j++] = pop();
 			push(ch);
