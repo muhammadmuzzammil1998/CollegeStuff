@@ -43,4 +43,5 @@ int main() {
 	while (stack[top] != '~') postfix[ptop++] = pop();
 	postfix[ptop] = '\0'; // Null Char
 	printf("\nEquivalent Postfix Expression: %s", postfix);
+	return 0;
 }
