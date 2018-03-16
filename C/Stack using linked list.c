@@ -5,7 +5,7 @@
 struct node {
 	int value;
 	struct node* next;
-}* top = NULL;
+}*top = NULL;
 
 int isUnderflow(int print_error) {
 	if (print_error && isUnderflow(0))
@@ -65,23 +65,20 @@ int main() {
 			scanf("%d", &element);
 			push(element);
 			printf("Element pushed.");
-		}
-		else if (choice == 2) pop();
+		} else if (choice == 2) pop();
 		else if (choice == 3) peek();
 		else if (choice == 4) dump();
 		else if (choice == 5) {
 			clear();
 			printf("Stack emptied.");
-		}
-		else if (choice == 6) {
-			printf("Enter limit:\t");
+		} else if (choice == 6) {
+			printf("Enter limit (MAX: 100):\t");
 			int limit;
 			scanf("%d", &limit);
 			printf("Populating stack with random values...");
 			populate(limit);
 			printf("\t\tDone");
-		}
-		else if (choice != 0) printf("Invalid selection.");
+		} else if (choice != 0) printf("Invalid selection.");
 	}
 	return 0;
 }
