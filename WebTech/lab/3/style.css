@@ -1,0 +1,20 @@
+body {
+  font-family: "Segoe UI";
+  font-size: 2em;
+}
+a {
+  border: 2px dashed black;
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+  color: blue;
+}
+p {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+ul {
+  margin-left: 200px;
+  text-align: left;
+}
+
