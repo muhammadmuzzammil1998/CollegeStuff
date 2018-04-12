@@ -67,7 +67,7 @@ int main() {
 			printf("Enter limit (MAX: %d):\t", MAX - tail);
 			int limit;
 			scanf("%d", &limit);
-			printf("Populating stack with random values...");
+			printf("Populating queue with random values...");
 			populate(limit);
 			printf("\t\tDone");
 		} else if (choice != 0) printf("Invalid selection.");
