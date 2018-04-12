@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login | Q4</title>
+    <style>
+        body {
+            font-family: "Segoe UI";
+            font-size: 2em;
+        }
+
+        #wrapper {
+            width: 50%;
+            position: absolute;
+            left: 25%;
+            right: 25%;
+        }
+
+        input:not(#submit) {
+            font-size: 1em;
+            width: 70%;
+            float: right;
+        }
+
+        #submit {
+            font-size: 1em;
+            margin-top: 10px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>Login to see your profile</h1>
+        <form action="profile.php" method="POST">
+            Username: <input type="text" name="usr" required><br>
+            Password: <input type="password" name="pass" required><br>
+            <input type="submit" id="submit" value="Log in">
+        </form>
+    </div>
+</body>
+
+</html>
+
+
+
