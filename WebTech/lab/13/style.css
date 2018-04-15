@@ -1,0 +1,18 @@
+body {
+    font-family: "Segoe UI";
+    font-size: 2em;
+}
+
+table {
+    width: 75%;
+}
+
+input:not(#radio) {
+    font-size: 1em;
+    width: 100%;
+}
+
+#radio {
+    height: 30px;
+    width: 30px;
+}
