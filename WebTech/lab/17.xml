@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product>
+        <name>Samsung Galaxy S9+</name>
+        <rate>Rs. 63,799</rate>
+        <storage>64 GB</storage>
+        <ram>6 GB</ram>
+    </product>
+    <product>
+        <name>Samsung Galaxy Note 8</name>
+        <rate>Rs. 57,900</rate>
+        <storage>64 GB</storage>
+        <ram>6 GB</ram>
+    </product>
+    <product>
+        <name>Samsung Galaxy S9</name>
+        <rate>Rs. 54,180</rate>
+        <storage>64 GB</storage>
+        <ram>4 GB</ram>
+    </product>
+    <product>
+        <name>Samsung Galaxy S8+</name>
+        <rate>Rs. 51,900</rate>
+        <storage>64 GB</storage>
+        <ram>4 GB</ram>
+    </product>
+    <product>
+        <name>Samsung Galaxy S8</name>
+        <rate>Rs. 46,700</rate>
+        <storage>64 GB</storage>
+        <ram>4 GB</ram>
+    </product>
+    <product>
+        <name>Samsung Galaxy S7</name>
+        <rate>Rs. 37,500</rate>
+        <storage>32 GB</storage>
+        <ram>4 GB</ram>
+    </product>
+</products>
