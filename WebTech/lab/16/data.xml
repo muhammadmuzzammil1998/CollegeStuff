@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="main.css"?>
+<billionaires>
+    <billionaire>
+        <name>Jeff Bezos</name>
+        <worth>$112 Billion</worth>
+        <nationality>American</nationality>
+    </billionaire>
+    <billionaire>
+        <name>Bill Gates</name>
+        <worth>$90 Billion</worth>
+        <nationality>American</nationality>
+    </billionaire>
+    <billionaire>
+        <name>Warren Buffett</name>
+        <worth>$84 Billion</worth>
+        <nationality>American</nationality>
+    </billionaire>
+    <billionaire>
+        <name>Bernard Arnault</name>
+        <worth>$72 Billion</worth>
+        <nationality>French</nationality>
+    </billionaire>
+    <billionaire>
+        <name>Mark Zuckerberg</name>
+        <worth>$71 Billion</worth>
+        <nationality>American</nationality>
+    </billionaire>
+</billionaires>

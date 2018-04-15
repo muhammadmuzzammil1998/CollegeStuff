@@ -1,0 +1,34 @@
+billionaire {
+    font-family: "Segoe UI";
+    padding: 10px;
+}
+
+name::before {
+    content: "Name: ";
+    color: lightgrey;
+}
+
+name {
+    font-size: 3em;
+    display: block;
+}
+
+worth::before {
+    content: "Net Worth: ";
+    color: lightgrey;
+}
+
+worth {
+    font-size: 2em;
+    display: block;
+}
+
+nationality::before {
+    content: "Nationality: ";
+    color: lightgrey;
+}
+
+nationality {
+    font-size: 2em;
+    display: block;
+}
