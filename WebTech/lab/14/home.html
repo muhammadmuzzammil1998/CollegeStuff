@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Connection | Q14</title>
+    <style>
+        body {
+            font-family: "Segoe UI";
+            font-size: 2em;
+        }
+        table{ width: 75%; }
+        input:not(#radio){
+            font-size: 1em;
+            width: 100%;
+        }
+        #radio{ height: 30px; width: 30px; }
+    </style>
+</head>
+
+<body>
+    <center>
+        <form action="register.php" method="POST">
+            <table>
+                <tr>
+                    <td>Name: </td>
+                    <td colspan="2"><input type="text" name="name" required></td>
+                </tr>
+                <tr>
+                    <td>Enrollment Number: </td>
+                    <td colspan="2"><input type="text" name="enum" required></td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td colspan="2"><input type="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Birthday: </td>
+                    <td colspan="2"><input type="date" name="dob" required></td>
+                </tr>
+                <tr>
+                    <td>Gender: </td>
+                    <td><input type="radio" id="radio" name="gender" value="male" required checked>Male</td>
+                    <td><input type="radio" id="radio" name="gender" value="female" required>Female</td>
+                </tr>
+                <tr><td colspan="3"><input type="submit" value="Register!"></td></tr>
+            </table>
+        </form> 
+    </center>
+</body>
+</html>
+
+
+
+
