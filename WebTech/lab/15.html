@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browser Details | Q15</title>
+    <style>
+        body {
+            font-family: "Segoe UI";
+            font-size: 2em;
+        }
+        td {
+            width: 70%;
+            border: 2px solid black;
+            padding: 5px;
+        }
+        table {
+            border: 2px solid black;
+        }
+        #title {
+            width: 30%
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr><td id="title">Cookies Enabled?</td><td id="cookie"></td></tr>
+        <tr><td id="title">App Name</td><td id="app"></td></tr>
+        <tr><td id="title">App Codename</td><td id="codename"></td></tr>
+        <tr><td id="title">Engine Name</td><td id="product"></td></tr>
+        <tr><td id="title">App Version</td><td id="version"></td></tr>
+        <tr><td id="title">Agent</td><td id="agent"></td></tr>
+        <tr><td id="title">Is Online?</td><td id="online"></td></tr>
+        <tr><td id="title">Java Enabled?</td><td id="java"></td></tr>
+    </table>
+    <script>
+        (function () {
+            function $(id, str) {
+                return document.getElementById(id).innerText = str;
+            }
+            $("cookie", navigator.cookieEnabled ? "Yes" : "No");
+            $("app", navigator.appName);
+            $("codename", navigator.appCodeName);
+            $("product", navigator.product);
+            $("version", navigator.appVersion);
+            $("agent", navigator.userAgent);
+            $("online", navigator.onLine ? "Yes" : "No");
+            $("java", navigator.javaEnabled ? "Yes" : "No");
+        })();
+    </script>
+</body>
+</html>
+
+
+
