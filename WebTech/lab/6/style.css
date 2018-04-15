@@ -1,0 +1,66 @@
+* {
+    margin: 0
+}
+
+body {
+    font-family: "Segoe UI";
+}
+
+#logo-wrapper {
+    background: linear-gradient(145deg, #0fb8ad, #1fc8db, #2cb5e8)
+}
+
+#nav {
+    background: #2cb5e8;
+    font-size: 110%;
+    padding: 10px;
+}
+
+#nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: all .5s;
+}
+
+#nav a:hover {
+    color: #0fb8ad;
+    background: whitesmoke;
+}
+
+table {
+    width: 100%;
+}
+
+#content {
+    width: 75%;
+}
+
+#notices {
+    width: 25%;
+}
+
+#notices li {
+    margin: 10px;
+    color: #0fb8ad;
+}
+
+#notices li a {
+    color: blue;
+    text-decoration: none;
+    transition: all .5s;
+}
+
+#notices li a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+#content {
+    border-right: 2px solid #0fb8ad;
+}
+
+#content a {
+    text-decoration: none;
+    color: black;
+}
