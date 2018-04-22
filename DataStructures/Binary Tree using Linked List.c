@@ -61,7 +61,6 @@ int main() {
 		printf("\nEnter Your choice: "); scanf("%d", &choice);
 		switch (choice) {
 			case 1:
-				root = NULL;
 				do {
 					newNode = createNode();
 					printf("Enter data: "); scanf("%d", &newNode->data);
