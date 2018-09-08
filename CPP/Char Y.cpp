@@ -22,7 +22,7 @@
 
 std::string space(const int n) {
 	std::string s;
-	for (auto i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 		s += " ";
 	return s;
 }
@@ -31,7 +31,7 @@ int main() {
 	std::cout << "Enter a number: ";
 	int n, down = 0;
 	std::cin >> n;
-	for (auto i = n; i > 0; i--) {
+	for (int i = n; i > 0; i--) {
 		if (down) {
 			std::cout << space(i + n - 2) << "/" << i << "\n";
 			continue;
