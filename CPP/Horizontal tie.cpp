@@ -27,14 +27,13 @@
 #include <iostream>
 #include <string>
 
-void space(const int n) {
-	for (int i = 0; i < n; i++)
-		std::cout << " ";
-}
-
 void space(const int n, const char ch) {
 	for (int i = 0; i < n; i++)
 		std::cout << ch;
+}
+
+void space(const int n) {
+	space(n, ' ');
 }
 
 int main() {
