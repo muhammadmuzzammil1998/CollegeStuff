@@ -8,13 +8,13 @@
  *            \3    3/
  *             \2  2/
  *              \11/
- *              /7
- *             /6
- *            /5
- *           /4
- *          /3
- *         /2
- *        /1
+ *              /7/
+ *             /6/
+ *            /5/
+ *           /4/
+ *          /3/
+ *         /2/
+ *        /1/
  */
  
 #include <iostream>
@@ -33,7 +33,7 @@ int main() {
 	std::cin >> n;
 	for (int i = n; i > 0; i--) {
 		if (down) {
-			std::cout << space(i + n - 2) << "/" << i << "\n";
+			std::cout << space(i + n - 2) << "/" << i << "/\n";
 			continue;
 		}
 		std::cout << space(i) << space((n - i) * 2);
