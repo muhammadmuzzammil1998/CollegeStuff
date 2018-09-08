@@ -64,5 +64,5 @@ int main() {
 			std::cout << "-";
 	}
 	std::cout << std::endl;
-	while (1);
+	return 0;
 }

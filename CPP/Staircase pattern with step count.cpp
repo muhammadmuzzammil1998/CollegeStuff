@@ -35,4 +35,5 @@ int main() {
 		space(l);
 		l += s;
 	}
+	return 0;
 }
