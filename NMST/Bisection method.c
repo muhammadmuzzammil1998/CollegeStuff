@@ -11,7 +11,7 @@ void print(int i, float a, float b, float x, float fx) {
 
 int main() {
 	float a, b;
-	printf("f(x) = x^3 - 2x - 5\n\nEnter values for a and b such that f(a) and f(b) are of opposite signs: ");
+	printf("Finding root using Bisection Method\n\nf(x) = x^3 - 2x - 5\n\nEnter values for a and b such that f(a) and f(b) are of opposite signs: ");
 	scanf("%f %f", &a, &b);
 	if (F(a) > 0 && F(b) > 0 || F(a) < 0 && F(b) < 0) {
 		printf("f(a) = %.2f and f(b) = %.2f are of same sign, which means a root is not in between them.\n", F(a), F(b));
