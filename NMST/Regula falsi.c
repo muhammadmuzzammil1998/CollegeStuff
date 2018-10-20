@@ -7,10 +7,13 @@
 
 int main() {
     float a, b;
-    printf("Finding root using Regula falsi\n\nf(x) = x^3 - 2x - 5\n\nEnter values for a and b such that f(a) and f(b) are of opposite signs: ");
+    printf("Finding root using Regula falsi");
+    printf("\n\nf(x) = x^3 - 2x - 5\n\n");
+    printf("Enter values for a and b such that f(a) and f(b) are of opposite signs: ");
     scanf("%f %f", &a, &b);
     if (F(a) > 0 && F(b) > 0 || F(a) < 0 && F(b) < 0) {
-        printf("f(a) = %.2f and f(b) = %.2f are of same sign, which means a root is not in between them.\n", F(a), F(b));
+        printf("f(a) = %.2f and f(b) = %.2f are of same sign, ", F(a), F(b));
+        printf("which means a root is not in between them.\n");
         return 1;
     }
     float fa, fb, x, fx;
@@ -23,7 +26,9 @@ int main() {
         else
             b = x;
         if (fabs(fx) < E) {
-            printf("\n\nAfter %d iterations, a root of the function is found to be %s%f", i, fx != 0 ? "approximately " : "", x);
+            printf("\n\nAfter %d iterations, ", i);
+            printf("a root of the function is found to be %s%f",
+                   fx != 0 ? "approximately " : "", x);
             if (fx != 0)
                 printf(" but is off by %f.\n", fx);
             else

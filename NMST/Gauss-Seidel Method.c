@@ -16,6 +16,7 @@ void dump(float arr[MAX + 1][MAX + 1]) {
 
 int main() {
     float err, matrix[MAX + 1][MAX + 1], x[MAX + 1];
+    printf("\nEnter the elements of augmented matrix:\n\n");
     for (int i = 1; i <= MAX; i++) {
         printf(" Enter the entire row %d: ", i);
         for (int j = 1; j <= MAX + 1; j++)

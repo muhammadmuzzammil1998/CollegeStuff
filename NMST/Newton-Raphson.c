@@ -18,7 +18,9 @@ int main() {
         PRINT(i, x, fx, dFx);
         x -= fx / dFx;
         if (fabs(F(x)) < E) {
-            printf("\n\nAfter %d iterations, a root of the function is found to be %s%f", i, F(x) != 0 ? "approximately " : "", x);
+            printf("\n\nAfter %d iterations, ", i);
+            printf("a root of the function is found to be %s%f",
+                   F(x) != 0 ? "approximately " : "", x);
             if (F(x) != 0)
                 printf(" but is off by %f.\n", F(x));
             else
@@ -26,5 +28,6 @@ int main() {
             break;
         }
     }
+
     return 0;
 }
