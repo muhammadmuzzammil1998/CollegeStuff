@@ -23,6 +23,8 @@ int main() {
         std::cin >> arr[i];
     }
     int size = (sizeof(arr) / sizeof(*arr));
-    std::cout << "Largest: " << largest(arr, size) << "\nSmallest: " << smallest(arr, size) << "\n";
+    std::cout << "Largest: " << largest(arr, size)
+              << "\nSmallest: " << smallest(arr, size)
+              << "\n";
     return 0;
 }

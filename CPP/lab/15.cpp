@@ -16,7 +16,13 @@ int avg(T* a) {
 }
 
 int main() {
-    int arr[MAX] = {23, 23, 23, 354, 46};
+    int arr[MAX];
+    for (int i = 0; i < MAX; i++) {
+        std::cout << "Enter number "
+                  << i + 1 << " out of "
+                  << MAX << ": ";
+        std::cin >> arr[i];
+    }
     std::cout << "SUM: " << sum(arr) << "\nAVG: " << avg(arr) << "\n";
     return 0;
 }
