@@ -18,6 +18,7 @@ public class Student {
   public static void main(String[] args) {
     Student std = new Student();
     std.Set(8, "Muzzammil");
-    System.out.println("Roll No: " + std.GetRollNo() + "\nName: " + std.GetName());
+    System.out.println("Roll No: " + std.GetRollNo());
+    System.out.println("Name: " + std.GetName());
   }
 }
