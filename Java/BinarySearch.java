@@ -34,7 +34,10 @@ public class BinarySearch {
 
   public static void main(String[] args) {
     int[] arr = { 4, 6, 9, 1, 2, 5, 3, 8, 7 };
+    System.out.print("Array:\t\t");
+    dump(arr);
     sort(arr);
+    System.out.print("\nSorted array:\t");
     dump(arr);
     int find = 7;
     int loc = search(arr, find);
