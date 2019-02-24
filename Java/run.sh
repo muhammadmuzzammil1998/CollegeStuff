@@ -1,3 +1,5 @@
 javac $1.java
-java $1
-rm $1.class
+java $*
+chmod +x ./clear.sh
+./clear.sh
+chmod -x ./clear.sh
