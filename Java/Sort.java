@@ -1,20 +1,3 @@
-public class Sort {
-  public static void dump(int[] arr) {
-    for (int i = 0; i < arr.length; i++) {
-      System.out.print(arr[i] + " ");
-    }
-  }
-
-  public static void main(String[] args) {
-    int[] arr = { 4, 6, 3, 7, 9, 1, 2, 6, 4, 5, 6, 3, 7 };
-    System.out.print("Unsorted array:\t");
-    dump(arr);
-    Selection.Sort(arr);
-    System.out.print("\nSorted array:\t");
-    dump(arr);
-  }
-}
-
 class Insertion {
   public static void Sort(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
@@ -56,5 +39,49 @@ class Bubble {
           arr[j + 1] = tmp;
         }
     }
+  }
+}
+
+public class Sort {
+  public static void dump(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      System.out.print(arr[i] + " ");
+    }
+  }
+
+  public static void dump(int[] arr, boolean sorted) {
+    if (sorted) {
+      System.out.print("  Sorted array:\t\t");
+    } else {
+      System.out.print("  Unsorted array:\t");
+    }
+    dump(arr);
+    System.out.println(sorted ? "\n" : "");
+  }
+
+  public static int[] getArray() {
+    int[] arr = new int[10];
+    for (int i = 0; i < 10; i++) {
+      arr[i] = (int) Math.round(Math.random() * 9);
+    }
+    return arr;
+  }
+
+  public static void main(String[] args) {
+    int[] arr = getArray();
+    System.out.println("Selection Sort:");
+    dump(arr, false);
+    Selection.Sort(arr);
+    dump(arr, true);
+    arr = getArray();
+    System.out.println("Insertion Sort:");
+    dump(arr, false);
+    Insertion.Sort(arr);
+    dump(arr, true);
+    System.out.println("Bubble Sort:");
+    arr = getArray();
+    dump(arr, false);
+    Bubble.Sort(arr);
+    dump(arr, true);
   }
 }
