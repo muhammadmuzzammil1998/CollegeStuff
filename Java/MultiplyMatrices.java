@@ -19,7 +19,7 @@ public class MultiplyMatrices {
     space((5 * c) + 1);
     System.out.println("__");
     for (int i = 0; i < r; i++) {
-      if (i == Math.round(c / 2)) {
+      if (i == Math.round(r / 2)) {
         System.out.print(label + " = ");
       }
       System.out.print("\t|");
