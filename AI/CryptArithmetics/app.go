@@ -35,7 +35,7 @@ func sendmoremoney() ([50][3]int, int, error) {
 										send = 1000*s + 100*e + 10*n + d
 										more = 1000*m + 100*o + 10*r + e
 										money = 10000*m + 1000*o + 100*n + 10*e + y
-										fmt.Printf("\rChecking:\t\t%d, %d, %d\t\tCombination: %d", send, more, money, combinations)
+										fmt.Printf("\rChecking:\t\t%d, %d, %d  Combination: %d", send, more, money, combinations)
 										if send+more == money {
 											solutions[solutionIndex][0] = send
 											solutions[solutionIndex][1] = more
@@ -85,7 +85,7 @@ func twotwofour() ([50][3]int, int, error) {
 								fIsOne++
 								two = 100*t + 10*w + o
 								four = 1000*f + 100*o + 10*u + r
-								fmt.Printf("\rChecking:\t\t%d, %d, %d\t\tCombination: %d", two, two, four, combinations)
+								fmt.Printf("\rChecking:\t\t%d, %d, %d  Combination: %d", two, two, four, combinations)
 								if two+two == four {
 									solutions[solutionIndex][0] = two
 									solutions[solutionIndex][1] = two
