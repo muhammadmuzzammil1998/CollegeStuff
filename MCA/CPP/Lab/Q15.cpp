@@ -1,38 +1,25 @@
 #include <iostream>
-#include <string>
-
 using namespace std;
 
-struct Student {
-  int rollno;
-  string name;
-  double marks;
-};
-
 int main() {
-  int n;
-  cout << "Enter number of students: ";
-  cin >> n;
+  int size;
+  cout << "Enter size: ";
+  cin >> size;
 
-  Student students[n];
+  int arr[size], max;
 
-  for (int i = 0; i < n; i++) {
-    cout << "\n\nEnter Name: ";
-    cin.ignore();
-    getline(cin, students[i].name);
-
-    cout << "Enter rollno: ";
-    cin >> students[i].rollno;
-
-    cout << "Enter Marks: ";
-    cin >> students[i].marks;
+  cout << "Enter elements: ";
+  for (int i = 0; i < size; i++) {
+    cin >> arr[i];
   }
 
-  double sum;
-  for (int i = 0; i < n; i++) {
-    sum += students[i].marks;
+  for (int i = 0; i < size; i++) {
+    if (max < arr[i]) {
+      max = arr[i];
+    }
   }
-  cout << "Class average: " << sum / n << endl;
+
+  cout << "Largest element: " << max;
 
   return 0;
 }

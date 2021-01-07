@@ -3,10 +3,8 @@
 using namespace std;
 
 int main() {
-  extern int i;
-  cout << "Counting till 10 from " << i << ":" << endl;
-  for (; i <= 10; ++i) {
-    cout << i << " ";
+  int factor = 5;
+  for (register int i = 1; i <= 50; i++) {
+    cout << i * factor << " ";
   }
-  return 0;
 }
