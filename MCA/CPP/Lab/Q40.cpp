@@ -8,6 +8,8 @@ using namespace std;
 void write() {
   ofstream file("data.txt");
   string line;
+  cout << "\n<<<Writing data to file>>>\n";
+  cout << "Enter '\\q' to quit.\n";
   cin.ignore();
   do {
     getline(cin, line);
@@ -19,6 +21,7 @@ void write() {
 
 void read() {
   ifstream file("data.txt");
+  cout << "\n<<<Reading data from file>>>\n\n";
   string read;
   while (getline(file, read)) {
     cout << read << endl;
@@ -29,7 +32,7 @@ void read() {
 int main() {
   int choice;
   do {
-    cout << "Options:\n 1. Write\n 2. Read\n";
+    cout << "\n\nOptions:\n  1. Write\n  2. Read\n -1: Exit\n\n";
     cout << "Enter choice: ";
     cin >> choice;
     switch (choice) {
