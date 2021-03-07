@@ -13,5 +13,3 @@ int main() {
   cout << "Subtraction: " << sub(a, b) << endl;
   return 0;
 }
-
-Write a program to find
