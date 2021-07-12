@@ -7,7 +7,7 @@ class Graph:
         for vertex in vertices:
             self._vertices.append(vertex)
 
-    def connect(self, *edges):
+    def create_adj(self, *edges):
         for edge in edges:
             self._edges.append(edge)
 
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     g = Graph()
 
     print("1. Add node to graph")
-    print("2. Connect nodes via edges")
+    print("2. Create adjacency")
     print("3. Print edges")
 
     while True:
@@ -44,7 +44,7 @@ if __name__ == '__main__':
         if inp == 1:
             g.add_node(read_int("Enter node: "))
         elif inp == 2:
-            g.connect([read_int("Enter edge from: "),
-                      read_int("Enter edge to: ")])
+            g.create_adj([read_int("Enter edge from: "),
+                          read_int("Enter edge to: ")])
         else:
             print(g)
