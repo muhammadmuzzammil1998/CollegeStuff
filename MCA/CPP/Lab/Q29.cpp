@@ -47,7 +47,7 @@ int main() {
     cin.ignore();
     getline(cin, address);
 
-    students[i].setInfo(name, address, roll_no);
+    students[i].setInfo(name, address);
   }
 
   for (int i = 0; i < LIM; i++) {
