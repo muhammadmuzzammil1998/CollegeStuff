@@ -8,7 +8,7 @@ class Graph:
             return
 
         vertex_index = None
-        for i in range(len(self._vertices)-1):
+        for i, _ in enumerate(self._vertices):
             if self._vertices[i] == data:
                 self._vertices.remove(data)
                 vertex_index = i
@@ -16,7 +16,7 @@ class Graph:
 
         edges_indices = []
         adjustment_factor = 0
-        for i in range(len(self._edges)):
+        for i, _ in enumerate(self._edges):
             if self._edges[i][0] == vertex_index or self._edges[i][1] == vertex_index:
                 edges_indices.append(i)
             if self._edges[i][0] > vertex_index:
