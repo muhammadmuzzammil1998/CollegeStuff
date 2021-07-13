@@ -5,12 +5,12 @@ class Stack:
 
     def push(self, data):
         if self._lim is not None and self._lim > len(self._stack):
-            raise ValueError("Stack overflow.")
+            print("~~STACK OVERFLOW~~")
+            return
         self._stack.append(int(data))
 
     def __str__(self):
         return str(self._stack)
-
 
 
 if __name__ == '__main__':
