@@ -40,7 +40,12 @@ class LinkedList:
             current = current.next
 
         return None
-    def
+
+    def first_child(self):
+        if self.head == None:
+            return None
+
+        return self.head.data
 
     def __str__(self):
         current = self.head
@@ -59,18 +64,12 @@ class Queue:
         self._queue.append(int(data))
 
     def dequeue(self):
-        # if self._stack.peek() is None:
-        #     print("~~STACK UNDERFLOW~~")
-        #     return None
-        # return self._stack.remove()
-
-        # if len(self._queue) == 0:
-        #     print("~~QUEUE UNDERFLOW~~")
-        #     return None
-        # dequeued = self._queue[0]
-        # self._queue = self._queue[1:]
-        # return dequeued
-        return self._queue.data
+        peek_value = self._queue.first_child()
+        if peek_value is None:
+            print("~~QUEUE UNDERFLOW~~")
+            return None
+        self._queue.remove(peek_value)
+        return peek_value
 
     def __str__(self):
         return str(self._queue)
