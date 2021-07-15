@@ -22,7 +22,7 @@ class Graph:
         for i in self._edges:
             vertex_from = self._vertices[i[0]]
             vertex_to = self._vertices[i[1]]
-            traversal += str(vertex_from) + " -> " + str(vertex_to) + "\n"
+            traversal += str(vertex_from) + " <-> " + str(vertex_to) + "\n"
         return traversal
 
 
