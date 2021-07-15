@@ -33,14 +33,10 @@ class LinkedList:
 
 
 class Stack:
-    def __init__(self, stack=LinkedList(), lim=None):
+    def __init__(self, stack=LinkedList()):
         self._stack = stack
-        self._lim = lim
 
     def push(self, data):
-        if self._lim is not None and self._lim > len(self._stack):
-            print("~~STACK OVERFLOW~~")
-            return
         self._stack.append(int(data))
 
     def __str__(self):
