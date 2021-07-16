@@ -45,7 +45,7 @@ def read_int(x): return int(input(x))
 
 
 if __name__ == '__main__':
-    vertices = [0, 1, 2, 3]
+    vertices = ["A", "B", "C", "D"]
     edges = [[0, 1], [1, 2], [2, 3]]
     g = Graph(vertices, edges)
 
