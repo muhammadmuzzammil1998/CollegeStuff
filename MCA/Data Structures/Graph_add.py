@@ -31,8 +31,8 @@ if __name__ == '__main__':
     while True:
         print("Vertices:", g.vertices())
         print("Edges", g.edges())
-        if read_int("Your choice: ") == 1:
-            g.add_node(read_int("Enter node: "))
+        if read_int(" Your choice: ") == 1:
+            g.add_node(input(" Enter node: "))
         else:
-            g.create_adj([read_int("Enter edge from: "),
-                          read_int("Enter edge to: ")])
+            g.create_adj([read_int(" Enter edge from: "),
+                          read_int(" Enter edge to: ")])
