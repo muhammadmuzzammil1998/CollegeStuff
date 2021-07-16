@@ -10,22 +10,6 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def appendAfter(self, data, after):
-        if self.head == None:
-            self.head = self.Node(data)
-            return self
-
-        current = self.head
-        while current.next != None:
-            current = current.next
-            if current.data == after.data:
-                break
-
-        node = self.Node(data)
-        node.next = current
-        current = node
-        return self
-
     def append(self, data):
         if self.head == None:
             self.head = self.Node(data)
@@ -84,4 +68,5 @@ if __name__ == '__main__':
     g.create_adj(3, 4, 0)
     g.create_adj(4, 1, 2, 3, 0)
 
+    print("Adjacencies for graph:")
     print(g)
