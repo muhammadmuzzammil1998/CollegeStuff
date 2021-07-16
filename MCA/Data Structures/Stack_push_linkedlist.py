@@ -4,11 +4,9 @@ class LinkedList:
             self.data = data
             self.next = None
 
-        def __str__(self):
-            return str(self.data)
+        def __str__(self): return str(self.data)
 
-    def __init__(self):
-        self.head = None
+    def __init__(self): self.head = None
 
     def append(self, data):
         if self.head == None:
@@ -33,14 +31,9 @@ class LinkedList:
 
 
 class Stack:
-    def __init__(self, stack=LinkedList()):
-        self._stack = stack
-
-    def push(self, data):
-        self._stack.append(int(data))
-
-    def __str__(self):
-        return str(self._stack)
+    def __init__(self, stack=LinkedList()): self._stack = stack
+    def push(self, data): self._stack.append(int(data))
+    def __str__(self): return str(self._stack)
 
 
 if __name__ == '__main__':
