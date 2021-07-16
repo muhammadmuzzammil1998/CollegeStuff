@@ -51,7 +51,7 @@ class LinkedList:
 if __name__ == '__main__':
     ll = LinkedList()
     print("1. Add to LinkedList")
-    print("2. Sort array")
+    print("2. Sort LinkedList")
 
     while True:
         print("LinkedList: ", ll)
