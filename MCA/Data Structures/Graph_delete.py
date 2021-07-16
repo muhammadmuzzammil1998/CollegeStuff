@@ -63,6 +63,6 @@ if __name__ == '__main__':
         print("Vertices:", g.vertices())
         print("Edges", g.edges())
         if read_int("Your choice: ") == 1:
-            g.delete_node(read_int("Enter node index: "))
+            g.delete_node(read_int(" Enter node index: "))
         else:
             print(g)
