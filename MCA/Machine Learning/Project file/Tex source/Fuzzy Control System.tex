@@ -1,0 +1,160 @@
+\hypertarget{fuzzy-control-system}{%
+\chapter{Fuzzy Control System}\label{fuzzy-control-system}}
+\section{Introduction}
+A control system is an arrangement of physical components designed to
+alter another physical system so that this system exhibits certain
+desired characteristics.
+
+\hypertarget{steps-in-designing-fuzzy-control-system}{%
+\section{Steps in Designing Fuzzy Control
+System}\label{steps-in-designing-fuzzy-control-system}}
+
+Following are the steps involved in designing Fuzzy Control System -
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Identification of variables - Here, the input, output and state
+  variables must be identified of the plant which is under
+  consideration.
+\item
+  Fuzzy subset configuration - The universe of information is divided
+  into number of fuzzy subsets and each subset is assigned a linguistic
+  label. Always make sure that these fuzzy subsets include all the
+  elements of universe.
+\item
+  Obtaining membership function - Now obtain the membership function for
+  each fuzzy subset that we get in the above step. A fuzzy set
+  \(\tilde{A}\) in the universe of information \(U\), where
+  \(\mu_{\tilde{A}}(y)\) maps \(U\), with respect to \(y\), to
+  membership space.
+\end{enumerate}
+\[
+\Large\tilde{A} = \{(y,\mu_{\tilde{A}}(y)) | y \in U\}
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Fuzzy rule base configuration - Now formulate the fuzzy rule base by
+  assigning relationship between fuzzy input and output.
+\item
+  Fuzzification - The fuzzification process is initiated in this step.
+\item
+  Combining fuzzy outputs - By applying fuzzy approximate reasoning,
+  locate the fuzzy output and merge them.
+\item
+  Defuzzification - Finally, initiate defuzzification process to form a
+  crisp output.
+\end{enumerate}
+\section{Implementation}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{skfuzzy} \PY{k}{as} \PY{n+nn}{fuzz}
+\PY{k+kn}{from} \PY{n+nn}{skfuzzy} \PY{k+kn}{import} \PY{n}{control} \PY{k}{as} \PY{n}{ctrl}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{quality} \PY{o}{=} \PY{n}{ctrl}\PY{o}{.}\PY{n}{Antecedent}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{quality}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{service} \PY{o}{=} \PY{n}{ctrl}\PY{o}{.}\PY{n}{Antecedent}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{service}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{tip} \PY{o}{=} \PY{n}{ctrl}\PY{o}{.}\PY{n}{Consequent}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{26}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tip}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{quality}\PY{o}{.}\PY{n}{automf}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)} \PY{c+c1}{\PYZsh{} Poor, average, good}
+\PY{n}{service}\PY{o}{.}\PY{n}{automf}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)} \PY{c+c1}{\PYZsh{} Poor, average, good}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Manual Functions}
+\PY{n}{tip}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{fuzz}\PY{o}{.}\PY{n}{trimf}\PY{p}{(}\PY{n}{tip}\PY{o}{.}\PY{n}{universe}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{]}\PY{p}{)}
+\PY{n}{tip}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{medium}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{fuzz}\PY{o}{.}\PY{n}{trimf}\PY{p}{(}\PY{n}{tip}\PY{o}{.}\PY{n}{universe}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{]}\PY{p}{)}
+\PY{n}{tip}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{high}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{fuzz}\PY{o}{.}\PY{n}{trimf}\PY{p}{(}\PY{n}{tip}\PY{o}{.}\PY{n}{universe}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{quality}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{p}{)}
+\PY{n}{service}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{p}{)}
+\PY{n}{tip}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{./figures/FCS1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{./figures/FCS2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{./figures/FCS3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Inference rule set}
+\PY{n}{rules} \PY{o}{=} \PY{p}{[}
+    \PY{n}{ctrl}\PY{o}{.}\PY{n}{Rule}\PY{p}{(}\PY{n}{quality}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{poor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZam{}} \PY{n}{service}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{poor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{tip}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+    \PY{n}{ctrl}\PY{o}{.}\PY{n}{Rule}\PY{p}{(}\PY{n}{quality}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{good}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZam{}} \PY{n}{service}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{good}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{tip}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{high}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+    \PY{n}{ctrl}\PY{o}{.}\PY{n}{Rule}\PY{p}{(}\PY{n}{quality}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{|} \PY{n}{service}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{good}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{tip}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{medium}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{tip\PYZus{}ct} \PY{o}{=} \PY{n}{ctrl}\PY{o}{.}\PY{n}{ControlSystem}\PY{p}{(}\PY{n}{rules}\PY{p}{)}
+\PY{n}{tipping} \PY{o}{=} \PY{n}{ctrl}\PY{o}{.}\PY{n}{ControlSystemSimulation}\PY{p}{(}\PY{n}{tip\PYZus{}ct}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{tipping}\PY{o}{.}\PY{n}{input}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{quality}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{6}
+\PY{n}{tipping}\PY{o}{.}\PY{n}{input}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{service}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{8}
+\PY{n}{tipping}\PY{o}{.}\PY{n}{compute}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tip should be around}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{tipping}\PY{o}{.}\PY{n}{output}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tip}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Tip should be around 12.889795918367348
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{tip}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{n}{sim}\PY{o}{=}\PY{n}{tipping}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{./figures/FCS4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
