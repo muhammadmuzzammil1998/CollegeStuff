@@ -1,0 +1,229 @@
+\hypertarget{decision-tree}{%
+\chapter{Decision Tree}\label{decision-tree}}
+\section{Introduction}
+Decision tree builds classification or regression models in the form of
+a tree structure. It breaks down a dataset into smaller and smaller
+subsets while at the same time an associated decision tree is
+incrementally developed. The final result is a tree with decision nodes
+and leaf nodes.
+
+\hypertarget{algorithm}{%
+\section{Algorithm}\label{algorithm}}
+
+The core algorithm for building decision trees called ID3 by J. R.
+Quinlan which employs a top-down, greedy search through the space of
+possible branches with no backtracking. ID3 uses Entropy and Information
+Gain to construct a decision tree.
+
+\hypertarget{entropy}{%
+\subsection{Entropy}\label{entropy}}
+
+A decision tree is built top-down from a root node and involves
+partitioning the data into subsets that contain instances with similar
+values (homogeneous). ID3 algorithm uses entropy to calculate the
+homogeneity of a sample. If the sample is completely homogeneous the
+entropy is zero and if the sample is an equally divided it has entropy
+of one.
+
+\hypertarget{information-gain}{%
+\subsection{Information Gain}\label{information-gain}}
+
+The information gain is based on the decrease in entropy after a dataset
+is split on an attribute. Constructing a decision tree is all about
+finding attribute that returns the highest information gain (i.e., the
+most homogeneous branches).
+
+\hypertarget{building-a-decision-tree}{%
+\section{Building a Decision tree}\label{building-a-decision-tree}}
+
+To build a decision tree, we need to calculate two types of entropy
+using frequency tables as follows:
+
+Step 1: Calculate Entropy using the frequency table of target attribute:
+
+\[
+\Large E(S) = \sum_{i=1}^{c} -p_i log_2 p_i
+\]
+
+Step 2: Calculate Entropy of attributes with respect to target attribute:
+
+\[
+\Large E(T, X) = \sum_{c \in X} P(c)E(c)
+\] *\emph{\(P(c)\) probability of c}
+
+Step 3: Calculate information gain of attributes and select the highest
+node as root node:
+
+\[
+\Large Gain(T, X) = E(T) - E(T, X)
+\]
+
+Step 4: Generate sub-tables for attributes with respect to parent node
+and target node.
+
+Step 5: Repeat untill Entropy reaches 0.
+
+\section{Implementation}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{tree} \PY{k+kn}{import} \PY{n}{DecisionTreeClassifier}\PY{p}{,} \PY{n}{plot\PYZus{}tree}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{OneHotEncoder}
+\PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{metrics}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{dataset} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./data/weather.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{map\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sunny}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Overcast}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Rain}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mild}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cool}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{High}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Normal}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Weak}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Strong}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Yes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{No}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{\PYZcb{}}
+\PY{n}{dataset}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    Outlook  Temp Humidity    Wind PlayTennis
+0     Sunny   Hot     High    Weak         No
+1     Sunny   Hot     High  Strong         No
+2  Overcast   Hot     High    Weak        Yes
+3      Rain  Mild     High    Weak        Yes
+4      Rain  Cool   Normal    Weak        Yes
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{X\PYZus{}raw} \PY{o}{=} \PY{n}{dataset}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\PY{n}{y} \PY{o}{=} \PY{n}{dataset}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{X} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+\PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{X\PYZus{}raw}\PY{p}{:}
+    \PY{n}{X}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{=} \PY{n}{X\PYZus{}raw}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{n}{map\PYZus{}dict}\PY{p}{)}
+\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{25}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{)} 
+\PY{n}{X}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    Outlook  Temp  Humidity  Wind
+0         0     0         0     0
+1         0     0         0     1
+2         1     0         0     0
+3         3     1         0     0
+4         3     2         1     0
+5         3     2         1     1
+6         1     2         1     1
+7         0     1         0     0
+8         0     2         1     0
+9         3     1         1     0
+10        0     1         1     1
+11        1     1         0     1
+12        1     0         1     0
+13        3     1         0     1
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{model} \PY{o}{=} \PY{n}{DecisionTreeClassifier}\PY{p}{(}\PY{n}{criterion}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{entropy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Train Decision Tree Classifier}
+\PY{n}{model} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}Predict the response for test dataset}
+\PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{metrics}\PY{o}{.}\PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy: 0.75
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+\PY{n}{plot\PYZus{}tree}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{feature\PYZus{}names}\PY{o}{=}\PY{n}{X\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{filled}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[Text(348.75, 396.375, 'Wind <= 0.5\textbackslash{}nentropy = 0.971\textbackslash{}nsamples = 10\textbackslash{}nvalue = [4,
+6]'),
+ Text(209.25, 283.125, 'Outlook <= 0.5\textbackslash{}nentropy = 0.722\textbackslash{}nsamples = 5\textbackslash{}nvalue =
+[1, 4]'),
+ Text(139.5, 169.875, 'Temp <= 1.5\textbackslash{}nentropy = 1.0\textbackslash{}nsamples = 2\textbackslash{}nvalue = [1,
+1]'),
+ Text(69.75, 56.625, 'entropy = 0.0\textbackslash{}nsamples = 1\textbackslash{}nvalue = [1, 0]'),
+ Text(209.25, 56.625, 'entropy = 0.0\textbackslash{}nsamples = 1\textbackslash{}nvalue = [0, 1]'),
+ Text(279.0, 169.875, 'entropy = 0.0\textbackslash{}nsamples = 3\textbackslash{}nvalue = [0, 3]'),
+ Text(488.25, 283.125, 'Humidity <= 0.5\textbackslash{}nentropy = 0.971\textbackslash{}nsamples = 5\textbackslash{}nvalue =
+[3, 2]'),
+ Text(418.5, 169.875, 'entropy = 0.0\textbackslash{}nsamples = 2\textbackslash{}nvalue = [2, 0]'),
+ Text(558.0, 169.875, 'Outlook <= 2.0\textbackslash{}nentropy = 0.918\textbackslash{}nsamples = 3\textbackslash{}nvalue = [1,
+2]'),
+ Text(488.25, 56.625, 'entropy = 0.0\textbackslash{}nsamples = 2\textbackslash{}nvalue = [0, 2]'),
+ Text(627.75, 56.625, 'entropy = 0.0\textbackslash{}nsamples = 1\textbackslash{}nvalue = [1, 0]')]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{./figures/DT1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{make\PYZus{}prediction}\PY{p}{(}\PY{n}{case}\PY{p}{)}\PY{p}{:}
+    \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{case}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{n}{map\PYZus{}dict}\PY{p}{)}
+    \PY{k}{return} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{p}{[}\PY{n}{df}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{make\PYZus{}prediction}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Overcast}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{High}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Strong}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['No']
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{make\PYZus{}prediction}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Overcast}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Normal}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Weak}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['Yes']
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
