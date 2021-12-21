@@ -9,12 +9,12 @@ read -p "Enter your answer: " answer
 
 case $answer in
     1)
-        echo "Correct answer"
+        echo "Correct answer 🥳"
             ;;
     2|3|4|5)
-        echo "Wrong answer"
+        echo "Wrong answer 👎🏻"
             ;;
     *)
-        echo "Invalid input"
+        echo "Invalid input ❌"
             ;;
 esac
