@@ -1,0 +1,37 @@
+\documentclass[11pt,a4paper]{book}
+\include{python}
+
+\usepackage{etoolbox}
+\usepackage{authblk}
+
+\renewcommand{\chaptername}{Question}
+
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
+\title{MCA 304\\Machine Learning Lab File\\}
+
+
+\begin{document}
+    \author {
+        Mohammad Muzammil Khan \footnote {
+            Contact: mmkhan.sch@jamiahamdard.ac.in\\\\
+            Enrollment no:\quad 2020-501-029\\
+            Course:\quad \quad \quad \quad \ Master of Computer Application\\
+            Year/Semester:\quad II/III (Class of '22)
+        }
+    }
+    \date{}
+
+    \affil{Dept. of Computer Science and Engineering,\\School of Engineering Sciences and Technology,\\Jamia Hamdard - India}
+    \maketitle    
+    \tableofcontents
+    \include{Find-S}
+    \include{Linear Regression}
+    \include{Multiple Regression}
+    \include{Decision Tree}
+    \include{Naive Bayes}
+    \include{k-Nearest Neighbor}
+    \include{Fuzzy Control System}
+\end{document}
